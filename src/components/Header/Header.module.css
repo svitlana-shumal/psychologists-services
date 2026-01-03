@@ -1,0 +1,18 @@
+.header {
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+.header::before {
+  stroke-width: 1px;
+  stroke: rgba(25, 26, 21, 0.1);
+}
+.nav {
+  display: flex;
+  text-align: center;
+  justify-content: flex-start;
+  gap: 130px;
+}
+
+.navList {
+  justify-content: center;
+}
