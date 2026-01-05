@@ -3,12 +3,16 @@
   margin: 0 auto;
   padding: 0 12px;
   max-width: 100%;
-} /* планшетна версія */
+}
+/* планшетна версія */
+
 @media (min-width: 768px) {
   .container {
     padding: 0 35px;
   }
-} /* десктопна версія */
+}
+/* десктопна версія */
+
 @media (min-width: 1025px) {
   .container {
     padding: 0 128px;

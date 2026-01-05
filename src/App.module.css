@@ -1,0 +1,11 @@
+.divider {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: rgba(25, 26, 21, 0.1);
+}
+@media (min-width: 1025px) {
+  .divider {
+    height: 1.5px;
+  }
+}

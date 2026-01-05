@@ -1,71 +1,102 @@
-// import { Link } from "react-router-dom";
-// import css from "./Header.module.css";
-// import Container from "../Container/page";
-// import { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
+import css from "./Header.module.css";
+import { useState } from "react";
+import Modal from "../Modal/Modal";
+import LoginForm from "../LoginForm/LoginForm";
+import AuthForm from "../AuthForm/AuthForm";
 
 const Header = () => {
-  // const [isAuthOpen, setIsAuthOpen] = useState(false);
-  // const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const isLoggedIn = false;
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [isRegisterOpen, setIsRegisterOpen] = useState(false);
 
-  // const { isAuthenticated, logout, loading } = useAuth();
+  const toggleMenu = () => {
+    setIsOpen((prev) => !prev);
+  };
 
-  // if (loading) return <Loader />;
-  return <div></div>;
+  return (
+    <section className={css.container}>
+      <header className={css.header}>
+        <Link to="/" className={css.logo}>
+          <svg width={218} height={28}>
+            <use href="/symbol-defs.svg#icon-logo-1" />
+          </svg>
+        </Link>
+        <nav className={`${css.nav} ${isOpen ? css.open : ""}`}>
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              isActive ? `${css.navList} ${css.active}` : css.navList
+            }
+            onClick={() => setIsOpen(false)}
+          >
+            Home
+          </NavLink>
+          <NavLink
+            to="/psychologists"
+            className={({ isActive }) =>
+              isActive ? `${css.navList} ${css.active}` : css.navList
+            }
+            onClick={() => setIsOpen(false)}
+          >
+            Psychologists
+          </NavLink>
+
+          {isLoggedIn && (
+            <NavLink
+              to="/favorites"
+              className={({ isActive }) =>
+                isActive ? `${css.navList} ${css.active}` : css.navList
+              }
+              onClick={() => setIsOpen(false)}
+            >
+              Favorites
+            </NavLink>
+          )}
+
+          <div className={css.auth}>
+            {!isLoggedIn ? (
+              <>
+                <button
+                  className={css.authBtn}
+                  onClick={() => setIsLoginOpen(true)}
+                >
+                  Log in
+                </button>
+                <button
+                  className={css.registration}
+                  onClick={() => setIsRegisterOpen(true)}
+                >
+                  Registration
+                </button>
+              </>
+            ) : (
+              <button className={css.authBtn}>Log out</button>
+            )}
+          </div>
+        </nav>
+        <button className={css.burger} onClick={toggleMenu}>
+          <svg width={20} height={20}>
+            <use
+              href={`/symbol-defs.svg#${isOpen ? "icon-close" : "icon-menu"}`}
+            />
+          </svg>
+        </button>
+        {isLoginOpen && (
+          <Modal onClose={() => setIsLoginOpen(false)}>
+            <LoginForm onClose={() => setIsLoginOpen(false)} />
+          </Modal>
+        )}
+
+        {isRegisterOpen && (
+          <Modal onClose={() => setIsRegisterOpen(false)}>
+            <AuthForm onClose={() => setIsRegisterOpen(false)} />
+          </Modal>
+        )}
+      </header>
+    </section>
+  );
 };
-//     <Container>
-//       <header className={css.header}>
-//         <nav className={css.nav}>
-//           <Link to="/" className={css.logo}>
-//             <svg width={218} height={28}>
-//               <use href="/symbol-defs.svg#icon-logo-1" />
-//             </svg>
-//           </Link>
-//           <div className={css.navBox}>
-//             <Link to="/" className={css.navList}>
-//               Home
-//             </Link>
-//             <Link to="/psychologists" className={css.navList}>
-//               Psychologists
-//             </Link>
-//             <Link to="/favorites" className={css.navList}>Favorites</Link>
-//           </div>
-//         </nav>
-//         <div className={css.auth}>
-//           {isAuthenticated ? (
-//             <button className={css.logout} onClick={logout}>
-//               Log out
-//             </button>
-//           ) : (
-//             <>
-//               <button
-//                 className={css.login}
-//                 onClick={() => setIsLoginOpen(!isLoginOpen)}
-//               >
-//                 Log in
-//               </button>
-//               <button
-//                 className={css.reg}
-//                 onClick={() => setIsAuthOpen(!isAuthOpen)}
-//               >
-//                 Registration
-//               </button>
-//             </>
-//           )}
-//         </div>
-//         {isAuthOpen && (
-//           <Modal
-//             onClose={() => setIsAuthOpen(false)}
-//             children={<AuthForm onClose={() => setIsAuthOpen(false)} />}
-//           />
-//         )}
-//         {isLoginOpen && (
-//           <Modal
-//             onClose={() => setIsLoginOpen(!isLoginOpen)}
-//             children={<LoginForm onClose={() => setIsLoginOpen(false)}}
-//           />
-// )}
-//     </header>
-//   </Container>
-// );}
 
 export default Header;

@@ -3,11 +3,13 @@ import Home from "./home/page";
 import Psychologists from "./psychologists/Psychologists";
 import Container from "./components/Container/page";
 import Header from "./components/Header/page";
+import css from "./App.module.css";
 
 function App() {
   return (
     <Container>
       <Header />
+      <div className={css.divider}></div>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/psychologists" element={<Psychologists />} />

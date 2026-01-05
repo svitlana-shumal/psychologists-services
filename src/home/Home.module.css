@@ -2,14 +2,12 @@
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
-  padding: 0 12px;
+  padding: 15px 0px;
 }
 .hero {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 15px;
-  padding-bottom: 15px;
   text-align: center;
 }
 .title {
@@ -119,7 +117,9 @@ strong {
   font-size: 20px;
   color: #fbfbfb;
 }
+
 /* для планшетів */
+
 @media (min-width: 768px) and (max-width: 1024px) {
   .container {
     padding-top: 39px;
@@ -133,10 +133,10 @@ strong {
     text-align: start;
     gap: 50px;
   }
-  .context {
-    /* flex: 1; */
+  /* .context {
+    flex: 1;
     max-width: 330px;
-  }
+  } */
   .title {
     margin-top: 48px;
     font-size: 45px;
@@ -195,17 +195,8 @@ strong {
     display: flex;
     flex-direction: row;
     gap: 128px;
-
     text-align: left;
   }
-  /* .context {
-    flex: 1;
-     max-width: 595px;
-  }
-  .imageWrapper {
-    flex: 1;
-    max-width: 464px;
-  } */
   .title {
     font-size: 80px;
   }

@@ -1,0 +1,14 @@
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border-radius: 30px;
+  /* padding: 15px 150px; */
+  height: 52px;
+  background-color: #54be96;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #fbfbfb;
+}

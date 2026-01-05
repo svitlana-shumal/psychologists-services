@@ -1,0 +1,87 @@
+import css from "./AuthForm.module.css";
+import * as yup from "yup";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import Button from "../Button/Button";
+import { registerUser } from "../../services/auth";
+import { FirebaseError } from "firebase/app";
+
+interface AuthFormValues {
+  name: string;
+  email: string;
+  password: string;
+}
+
+const authSchema = yup.object({
+  name: yup.string().min(2, "Too short name").required("Name is required"),
+  email: yup.string().email("Wrong email format").required("Email is required"),
+  password: yup.string().min(6, "Too short").required("Password is required"),
+});
+
+type Props = {
+  onClose: () => void;
+};
+
+export default function AuthForm({ onClose }: Props) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<AuthFormValues>({ resolver: yupResolver(authSchema) });
+
+  const onSubmit = async (data: AuthFormValues) => {
+    try {
+      await registerUser(data.email, data.password);
+      alert("Користувач зареєстрований");
+      onClose();
+      console.log(data);
+    } catch (error) {
+      if (error instanceof FirebaseError) {
+        switch (error.code) {
+          case "auth/user-not-found":
+            alert("Користувача з такою поштою не існує");
+            break;
+
+          case "auth/wrong-password":
+            alert("Неправильний пароль");
+            break;
+
+          case "auth/invalid-credential":
+            alert("Неправильна пошта або пароль");
+            break;
+
+          case "auth/invalid-email":
+            alert("Неправильна пошта або пароль");
+            break;
+
+          default:
+            alert(error.message);
+        }
+      } else {
+        alert("Невідома помилка");
+      }
+    }
+  };
+  return (
+    <div className={css.authForm}>
+      <h2>Registration</h2>
+      <p>
+        Thank you for your interest in our platform! In order to register, we
+        need some information. Please provide us with the following information.
+      </p>
+      <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
+        <input type="text" placeholder="Name" {...register("name")} />
+        {errors.name && <span>{errors.name?.message}</span>}
+        <input type="email" placeholder="Email" {...register("email")} />
+        {errors.email && <span>{errors.email.message}</span>}
+        <input
+          type="password"
+          placeholder="Password"
+          {...register("password")}
+        />
+        {errors.password && <span>{errors.password.message}</span>}
+        <Button text="Sign Up" type="submit" />
+      </form>
+    </div>
+  );
+}

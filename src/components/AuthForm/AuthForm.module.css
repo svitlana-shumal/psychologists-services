@@ -1,0 +1,40 @@
+.authForm {
+  max-width: 566px;
+}
+
+.authForm > h2 {
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #191a15;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.authForm > p {
+  margin-bottom: 40px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  color: rgba(25, 26, 21, 0.5);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+}
+
+.form > input {
+  width: 100%;
+  border: 1px solid rgba(18, 20, 23, 0.1);
+  border-radius: 12px;
+  padding: 16px 18px;
+  height: 52px;
+}
+
+.form > button {
+  margin-top: 20px;
+}
