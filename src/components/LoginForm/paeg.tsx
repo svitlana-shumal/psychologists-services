@@ -1,19 +1,17 @@
-import css from "./AuthForm.module.css";
+import Button from "../Button/page";
+import css from "./LoginForm.module.css";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import Button from "../Button/Button";
-import { registerUser } from "../../services/auth";
+import { loginUser } from "../../services/auth";
 import { FirebaseError } from "firebase/app";
 
-interface AuthFormValues {
-  name: string;
+interface LoginFormValues {
   email: string;
   password: string;
 }
 
-const authSchema = yup.object({
-  name: yup.string().min(2, "Too short name").required("Name is required"),
+const loginSchema = yup.object({
   email: yup.string().email("Wrong email format").required("Email is required"),
   password: yup.string().min(6, "Too short").required("Password is required"),
 });
@@ -22,19 +20,18 @@ type Props = {
   onClose: () => void;
 };
 
-export default function AuthForm({ onClose }: Props) {
+export default function LoginForm({ onClose }: Props) {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<AuthFormValues>({ resolver: yupResolver(authSchema) });
+  } = useForm<LoginFormValues>({ resolver: yupResolver(loginSchema) });
 
-  const onSubmit = async (data: AuthFormValues) => {
+  const onSubmit = async (data: LoginFormValues) => {
     try {
-      await registerUser(data.email, data.password);
-      alert("Користувач зареєстрований");
+      await loginUser(data.email, data.password);
+      alert("Користувач успішно залогінився");
       onClose();
-      console.log(data);
     } catch (error) {
       if (error instanceof FirebaseError) {
         switch (error.code) {
@@ -50,10 +47,6 @@ export default function AuthForm({ onClose }: Props) {
             alert("Неправильна пошта або пароль");
             break;
 
-          case "auth/invalid-email":
-            alert("Неправильна пошта або пароль");
-            break;
-
           default:
             alert(error.message);
         }
@@ -62,16 +55,15 @@ export default function AuthForm({ onClose }: Props) {
       }
     }
   };
+
   return (
-    <div className={css.authForm}>
-      <h2>Registration</h2>
+    <div className={css.loginForm}>
+      <h2>Log In</h2>
       <p>
-        Thank you for your interest in our platform! In order to register, we
-        need some information. Please provide us with the following information.
+        Welcome back! Please enter your credentials to access your account and
+        continue your search for a psychologist.
       </p>
       <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
-        <input type="text" placeholder="Name" {...register("name")} />
-        {errors.name && <span>{errors.name?.message}</span>}
         <input type="email" placeholder="Email" {...register("email")} />
         {errors.email && <span>{errors.email.message}</span>}
         <input
@@ -80,7 +72,7 @@ export default function AuthForm({ onClose }: Props) {
           {...register("password")}
         />
         {errors.password && <span>{errors.password.message}</span>}
-        <Button text="Sign Up" type="submit" />
+        <Button text="Log in" type="submit" />
       </form>
     </div>
   );

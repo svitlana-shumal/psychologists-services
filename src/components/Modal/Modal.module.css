@@ -20,8 +20,8 @@
 
 .close {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 15px;
+  right: 15px;
   stroke: #191a15;
   background: transparent;
   border: none;
@@ -29,7 +29,7 @@
   cursor: pointer;
 }
 /* планшетна версія */
-@media (min-width: 768px) and (max-width: 1024px) {
+@media screen and (min-width: 768px) {
   .backdrop {
     padding: 60px 128px;
   }
@@ -40,7 +40,7 @@
 }
 
 /* десктопна */
-@media (min-width: 1025px) {
+@media screen and (min-width: 1440px) {
   .backdrop {
     padding: 145px 437px;
   }

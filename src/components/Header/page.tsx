@@ -1,9 +1,9 @@
 import { Link, NavLink } from "react-router-dom";
 import css from "./Header.module.css";
 import { useState } from "react";
-import Modal from "../Modal/Modal";
-import LoginForm from "../LoginForm/LoginForm";
-import AuthForm from "../AuthForm/AuthForm";
+import Modal from "../Modal/page";
+import LoginForm from "../LoginForm/paeg";
+import AuthForm from "../AuthForm/page";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);

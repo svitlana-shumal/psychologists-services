@@ -6,15 +6,16 @@
 }
 /* планшетна версія */
 
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) {
   .container {
     padding: 0 35px;
   }
 }
 /* десктопна версія */
 
-@media (min-width: 1025px) {
+@media screen and (min-width: 1440px) {
   .container {
     padding: 0 128px;
+    max-width: 1440px;
   }
 }

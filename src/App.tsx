@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "./home/page";
-import Psychologists from "./psychologists/Psychologists";
+import Psychologists from "./psychologists/page";
 import Container from "./components/Container/page";
 import Header from "./components/Header/page";
 import css from "./App.module.css";

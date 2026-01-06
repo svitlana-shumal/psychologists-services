@@ -1,0 +1,83 @@
+.reviews {
+  background-color: #f9f9f9;
+}
+.reviewItem {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+}
+.reviewer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.reviewerAvatar {
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100px;
+  background-color: rgba(84, 190, 150, 0.2);
+  flex-shrink: 0;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1;
+  color: #54be96;
+}
+.reviewerInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.reviewItem p {
+  margin: 0;
+}
+.reviewName {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #191a15;
+}
+.reviewRating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.reviewRating span {
+  font-size: 14px;
+  font-weight: 500;
+  color: #191a15;
+}
+.comment {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  color: rgba(25, 26, 21, 0.5);
+}
+.appointmentBtn {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: #fbfbfb;
+  border-radius: 30px;
+  padding: 14px 32px;
+  width: 227px;
+  height: 48px;
+  background-color: #54be96;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.appointmentBtn:hover {
+  background-color: #36a379;
+  transform: translateY(-2px);
+}
+
+@media screen and (min-width: 768px) {
+  .appointmentBtn {
+    font-size: 16px;
+  }
+}

@@ -6,12 +6,11 @@
 }
 .header {
   background-color: #fbfbfb;
-  /* position: sticky; */
-  top: 0;
-  z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: sticky;
+  z-index: 1000;
 }
 .logo {
   display: flex;
@@ -55,7 +54,7 @@
 .authBtn {
   border: 1px solid rgba(25, 26, 21, 0.2);
   border-radius: 30px;
-  padding: 10px 30px;
+  padding: 10px 25px;
   background: transparent;
   font-size: 16px;
   font-weight: 500;
@@ -96,7 +95,7 @@
 
 /* Планшет (768px–1024px) */
 
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) {
   .nav {
     display: flex;
     flex: 1;
@@ -150,7 +149,7 @@
 }
 /* Десктоп (1025px) */
 
-@media (min-width: 1025px) {
+@media screen and (min-width: 1440px) {
   .container {
     padding: 24px 0px;
   }
@@ -168,6 +167,5 @@
   }
   .registration {
     padding: 14px 40px;
-    font-size: 16px;
   }
 }
