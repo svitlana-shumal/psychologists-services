@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Button from "../Button/page";
 import { registerUser } from "../../services/auth";
 import { FirebaseError } from "firebase/app";
+import { useState } from "react";
 
 interface AuthFormValues {
   name: string;
@@ -28,7 +29,7 @@ export default function AuthForm({ onClose }: Props) {
     handleSubmit,
     formState: { errors },
   } = useForm<AuthFormValues>({ resolver: yupResolver(authSchema) });
-
+  const [showPassword, setShowPassword] = useState(false);
   const onSubmit = async (data: AuthFormValues) => {
     try {
       await registerUser(data.email, data.password);
@@ -71,15 +72,40 @@ export default function AuthForm({ onClose }: Props) {
       </p>
       <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
         <input type="text" placeholder="Name" {...register("name")} />
-        {errors.name && <span>{errors.name?.message}</span>}
+        {errors.name && (
+          <span className={css.error}>{errors.name?.message}</span>
+        )}
         <input type="email" placeholder="Email" {...register("email")} />
-        {errors.email && <span>{errors.email.message}</span>}
-        <input
-          type="password"
-          placeholder="Password"
-          {...register("password")}
-        />
-        {errors.password && <span>{errors.password.message}</span>}
+        {errors.email && (
+          <span className={css.error}>{errors.email.message}</span>
+        )}
+        <div className={css.passwordField}>
+          <input
+            type={showPassword ? "text" : "password"}
+            placeholder="Password"
+            {...register("password")}
+            className={css.passwordInput}
+          />
+          <button
+            type="button"
+            onClick={() => setShowPassword((prev) => !prev)}
+            aria-label="Toggle password visibility"
+            className={css.passwordEye}
+          >
+            <svg width="20" height="20">
+              <use
+                href={
+                  showPassword
+                    ? "/symbol-defs.svg#icon-eye"
+                    : "/symbol-defs.svg#icon-eye-off"
+                }
+              />
+            </svg>
+          </button>
+        </div>
+        {errors.password && (
+          <span className={css.error}>{errors.password.message}</span>
+        )}
         <Button text="Sign Up" type="submit" />
       </form>
     </div>

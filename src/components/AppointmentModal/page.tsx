@@ -94,8 +94,8 @@ export const AppointmentModal = ({
         {errors.comment && (
           <span className={css.error}>{errors.comment.message}</span>
         )}
-        <Button text="Send" type="submit" />
       </form>
+      <Button text="Send" type="submit" />
     </div>
   );
 };

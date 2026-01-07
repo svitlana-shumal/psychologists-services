@@ -38,3 +38,33 @@
 .form > button {
   margin-top: 20px;
 }
+.passwordField {
+  position: relative;
+  width: 100%;
+}
+.passwordInput {
+  width: 100%;
+  border: 1px solid rgba(18, 20, 23, 0.1);
+  border-radius: 12px;
+  padding: 16px 18px;
+  height: 52px;
+}
+
+.passwordEye {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  stroke-width: 2px;
+  stroke: #191a15;
+  fill: #fbfbfb;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 0;
+}
+.error {
+  font-size: 12px;
+  color: red;
+  margin-top: -15px;
+  margin-left: 16px;
+}
