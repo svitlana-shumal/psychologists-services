@@ -45,8 +45,9 @@
 <symbol id="icon-burger" viewBox="0 0 32 32">
 <path d="M4 8h24v2H4V8zm0 7h24v2H4v-2zm0 7h24v2H4v-2z" />
 </symbol>
-<symbol id="icon-close" viewBox="0 0 32 32">
-<path d="M6 6l20 20m0-20L6 26" stroke="currentColor" stroke-width="2"/>
+<symbol id="icon-x" viewBox="0 0 32 32">
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.5" d="M24 8l-16 16"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.5" d="M8 8l16 16"></path>
 </symbol>
 <symbol id="icon-greenround" viewBox="0 0 32 32">
 <path fill="#fbfbfb" style="fill: var(--color1, #fbfbfb)" d="M32 16c0 8.837-7.163 16-16 16s-16-7.163-16-16c0-8.837 7.163-16 16-16s16 7.163 16 16z"></path>

@@ -31,7 +31,6 @@ export const ReviewsBlock = ({ reviews, onAppointmentClick }: Props) => {
           </li>
         ))}
       </ul>
-
       <button className={css.appointmentBtn} onClick={onAppointmentClick}>
         Make an appointment
       </button>

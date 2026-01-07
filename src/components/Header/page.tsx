@@ -2,7 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import css from "./Header.module.css";
 import { useState } from "react";
 import Modal from "../Modal/page";
-import LoginForm from "../LoginForm/paeg";
+import LoginForm from "../LoginForm/page";
 import AuthForm from "../AuthForm/page";
 
 const Header = () => {

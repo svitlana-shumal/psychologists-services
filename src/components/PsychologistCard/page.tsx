@@ -1,14 +1,19 @@
 import { useState } from "react";
 import type { Psychologists } from "../../types/PsychologistsType";
 import css from "./Psychologist.module.css";
-import { ReviewsBlock } from "../Reviews/page";
+import { ReviewsBlock } from "../../components/Reviews/page";
+import { AppointmentModal } from "../AppointmentModal/page";
+import Modal from "../Modal/page";
 
 type Props = { data: Psychologists };
 
 export default function PsychologistCard({ data }: Props) {
   const [showReviews, setShowReviews] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
-  const handleAppoinmentClick = () => {};
+  const handleAppoinmentClick = () => {
+    setShowModal(true);
+  };
 
   return (
     <div className={css.psychologistCard}>
@@ -95,6 +100,16 @@ export default function PsychologistCard({ data }: Props) {
             reviews={data.reviews}
             onAppointmentClick={handleAppoinmentClick}
           />
+        )}
+
+        {showModal && (
+          <Modal onClose={() => setShowModal(false)}>
+            <AppointmentModal
+              psychologistName={data.name}
+              psychologistAvatar={data.avatar_url}
+              onClose={() => setShowModal(false)}
+            />
+          </Modal>
         )}
       </div>
     </div>

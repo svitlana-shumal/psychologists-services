@@ -54,7 +54,7 @@
 }
 .comment {
   font-weight: 400;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.25;
   color: rgba(25, 26, 21, 0.5);
 }
@@ -78,6 +78,9 @@
 
 @media screen and (min-width: 768px) {
   .appointmentBtn {
+    font-size: 16px;
+  }
+  .comment {
     font-size: 16px;
   }
 }

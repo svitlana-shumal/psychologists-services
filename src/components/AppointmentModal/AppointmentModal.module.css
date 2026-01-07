@@ -1,0 +1,98 @@
+.modal {
+  background: #fff;
+  border-radius: 16px;
+  width: 100%;
+  margin: auto;
+  max-width: 480px;
+  overflow-y: auto;
+}
+.modal > h2 {
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #191a15;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+.description {
+  font-weight: 400;
+  line-height: 1.25;
+  color: rgba(25, 26, 21, 0.5);
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.avatar {
+  border-radius: 15px;
+  width: 40px;
+  height: 40px;
+}
+.avatarSpan {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  color: #8a8a89;
+}
+.name {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #191a15;
+  margin: 0;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+input,
+select,
+textarea {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+  margin-bottom: 24px;
+}
+
+.error {
+  font-size: 12px;
+  color: red;
+}
+
+@media screen and (min-width: 768px) {
+  .modal > h2 {
+    margin-bottom: 20px;
+  }
+  .description {
+    font-size: 16px;
+    margin-bottom: 40px;
+  }
+  .avatar {
+    width: 44px;
+    height: 44px;
+  }
+  .profile {
+    margin-bottom: 40px;
+  }
+  .form {
+    gap: 16px;
+  }
+}
+/* десктопна версія */
+
+@media screen and (min-width: 1440px) {
+}
