@@ -3,6 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import css from "./AppointmentModal.module.css";
 import Button from "../Button/page";
+import { useState } from "react";
 
 type Props = {
   psychologistName: string;
@@ -35,7 +36,24 @@ export const AppointmentModal = ({
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
+    clearErrors,
   } = useForm<AppointmentFormData>({ resolver: yupResolver(schema) });
+
+  const availableTimes = [
+    "09:00",
+    "09:30",
+    "10:00",
+    "10:30",
+    "11:00",
+    "11:30",
+    "12:00",
+    "12:30",
+    "13:00",
+    "13:30",
+  ];
+  const [selectedTime, setSelectedTime] = useState("");
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const onSubmit = (data: AppointmentFormData) => {
     console.log("Appointment data:", data);
@@ -58,7 +76,7 @@ export const AppointmentModal = ({
           alt={psychologistName}
         />
         <div className={css.profileName}>
-          <span className={css.avatarSpan}>Your psychologists</span>
+          <span className={css.avatarSpan}>Your psychologist</span>
           <p className={css.name}>{psychologistName}</p>
         </div>
       </div>
@@ -68,34 +86,58 @@ export const AppointmentModal = ({
         {errors.name && (
           <span className={css.error}>{errors.name.message}</span>
         )}
-
-        <input placeholder="+380" {...register("phone")} />
-        {errors.phone && (
-          <span className={css.error}>{errors.phone.message}</span>
-        )}
-
-        <select {...register("time")}>
-          <option value="">Meeting time</option>
-          <option value="09:00">09:00</option>
-          <option value="09:30">09:30</option>
-          <option value="10:00">10:00</option>
-          <option value="10:30">10:30</option>
-        </select>
-        {errors.time && (
-          <span className={css.error}>{errors.time.message}</span>
-        )}
-
+        <div className={css.row}>
+          <input
+            placeholder="+380"
+            {...register("phone")}
+            className={css.input}
+          />
+          <div className={css.timePicker}>
+            <div
+              className={css.timeInput}
+              onClick={() => setIsDropdownOpen((prev) => !prev)}
+            >
+              <span>{selectedTime || "00:00"}</span>
+              <svg width="20" height="20" className={css.clockIcon}>
+                <use href="/symbol-defs.svg#icon-clock" />
+              </svg>
+            </div>
+            {isDropdownOpen && (
+              <ul className={css.dropdown}>
+                {availableTimes.map((time) => (
+                  <li
+                    key={time}
+                    className={`${css.dropdownItem} ${
+                      selectedTime === time ? css.active : ""
+                    }`}
+                    onClick={() => {
+                      setSelectedTime(time);
+                      setValue("time", time, { shouldValidate: true });
+                      clearErrors("time");
+                      setIsDropdownOpen(false);
+                    }}
+                  >
+                    {time}
+                  </li>
+                ))}
+              </ul>
+            )}
+            {errors.time && (
+              <span className={css.error}>{errors.time.message}</span>
+            )}
+          </div>
+        </div>
+        <input type="hidden" {...register("time")} />
         <input placeholder="Email" {...register("email")} />
         {errors.email && (
           <span className={css.error}>{errors.email.message}</span>
         )}
-
         <textarea placeholder="Comment" {...register("comment")} />
         {errors.comment && (
           <span className={css.error}>{errors.comment.message}</span>
         )}
+        <Button text="Send" type="submit" />
       </form>
-      <Button text="Send" type="submit" />
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import type { Psychologists } from "../../types/PsychologistsType";
 import css from "./Psychologist.module.css";
-import { ReviewsBlock } from "../../components/Reviews/page";
+import { ReviewsBlock } from "../Reviews/page";
 import { AppointmentModal } from "../AppointmentModal/page";
 import Modal from "../Modal/page";
 

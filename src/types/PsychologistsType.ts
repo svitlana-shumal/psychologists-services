@@ -16,3 +16,12 @@ export interface Review {
   rating: number;
   comment: string;
 }
+
+export type SortOption =
+  | "a-z"
+  | "z-a"
+  | "price-low"
+  | "price-high"
+  | "rating-low"
+  | "rating-high"
+  | "";

@@ -1,8 +1,8 @@
 .modal {
   background: #fff;
   border-radius: 16px;
-  width: 100%;
   margin: auto;
+  width: 100%;
   max-width: 480px;
   overflow-y: auto;
 }
@@ -12,7 +12,7 @@
   line-height: 1.2;
   letter-spacing: -0.02em;
   color: #191a15;
-  margin-top: 0;
+  margin-top: 12px;
   margin-bottom: 15px;
 }
 .description {
@@ -54,12 +54,12 @@
 }
 
 input,
-select,
 textarea {
-  padding: 10px 14px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
+  padding: 16px 18px;
+  border-radius: 12px;
+  border: 1px solid rgba(25, 26, 21, 0.1);
   font-size: 14px;
+  color: #191a15;
 }
 
 textarea {
@@ -70,10 +70,70 @@ textarea {
 .error {
   font-size: 12px;
   color: red;
-  margin-top: -10px;
-  margin-left: 16px;
+  margin-top: 4px;
+  margin-left: 4px;
 }
-
+.row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.input {
+  flex: 1 1 50%;
+  padding: 16px 18px;
+  border-radius: 12px;
+  border: 1px solid rgba(25, 26, 21, 0.1);
+  font-size: 14px;
+}
+.timePicker {
+  position: relative;
+  flex: 1 1 50%;
+}
+.timeInput {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 18px;
+  border-radius: 12px;
+  border: 1px solid rgba(25, 26, 21, 0.1);
+  background-color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  color: #191a15;
+}
+.clockIcon {
+  /* stroke-width: 1.5; */
+  stroke: #191a15;
+  fill: #fbfbfb;
+}
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid rgba(25, 26, 21, 0.1);
+  margin-top: 4px;
+  z-index: 10;
+  max-height: 200px;
+  overflow-y: auto;
+}
+.dropdownItem {
+  padding: 12px 18px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.dropdownItem:hover {
+  background-color: #f0f0f0;
+}
+.label {
+  font-weight: 500;
+  font-size: 12px;
+  color: #191a15;
+}
 @media screen and (min-width: 768px) {
   .modal > h2 {
     margin-bottom: 20px;
@@ -92,6 +152,16 @@ textarea {
   .form {
     gap: 16px;
     margin-bottom: 24px;
+  }
+  input,
+  textarea {
+    font-size: 16px;
+  }
+  .label {
+    font-size: 16px;
+  }
+  .row {
+    flex-wrap: nowrap;
   }
 }
 /* десктопна версія */

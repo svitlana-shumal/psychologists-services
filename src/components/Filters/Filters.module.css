@@ -1,0 +1,81 @@
+.dropdown {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.nameFilter {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.28;
+  color: #8a8a89;
+  margin: 0;
+}
+/* Кнопка-триггер */
+.trigger {
+  width: 100%;
+  background-color: #54be96;
+  border-radius: 12px;
+  padding: 16px 18px;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  color: #fbfbfb;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+/* Меню  */
+.iconRow {
+  top: 14px;
+  right: 14px;
+  stroke-width: 2px;
+  stroke: #fbfbfb;
+}
+.menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  border-radius: 14px;
+  border: 1px solid rgba(25, 26, 21, 0.1);
+  margin-top: 4px;
+  z-index: 10;
+  list-style: none;
+  padding: 14px 18px;
+  width: 100%;
+  box-shadow: 0 20px 69px 0 rgba(0, 0, 0, 0.07);
+  background-color: #fff;
+} /* Елементи меню */
+.item {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.25;
+  color: rgba(25, 26, 21, 0.3);
+  padding: 10px 0;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.item:hover {
+  color: #191a15;
+} /* Активний стан */
+.active {
+  color: #191a15;
+}
+@media screen and (min-width: 768px) {
+  .trigger {
+    font-size: 16px;
+    max-width: 226px;
+  }
+  .item {
+    font-size: 16px;
+  }
+  .menu {
+    margin-top: 8px;
+    width: 226px;
+  }
+}

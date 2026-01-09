@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import css from "./Psychologists.module.css";
 import { getPsychologists } from "../services/psychologists";
-import type { Psychologists } from "../types/PsychologistsType";
+import type { Psychologists, SortOption } from "../types/PsychologistsType";
 import PsychologistCard from "../components/PsychologistCard/page";
+import SortDropdown from "../components/Filters/page";
 
 export default function PsychologistsPage() {
   const [psychologists, setPsychologists] = useState<Psychologists[]>([]);
@@ -37,10 +38,34 @@ export default function PsychologistsPage() {
     setLoading(false);
   };
 
+  const [sort, setSort] = useState<SortOption>("a-z");
+
+  const sortPsychologists = (list: Psychologists[], sort: SortOption) => {
+    switch (sort) {
+      case "a-z":
+        return [...list].sort((a, b) => a.name.localeCompare(b.name));
+      case "z-a":
+        return [...list].sort((a, b) => b.name.localeCompare(a.name));
+      case "price-low":
+        return [...list].sort((a, b) => a.price_per_hour - b.price_per_hour);
+      case "price-high":
+        return [...list].sort((a, b) => b.price_per_hour - a.price_per_hour);
+      case "rating-low":
+        return [...list].sort((a, b) => a.rating - b.rating);
+      case "rating-high":
+        return [...list].sort((a, b) => b.rating - a.rating);
+      default:
+        return list;
+    }
+  };
+
+  const sortedList = sortPsychologists(psychologists, sort);
+
   return (
     <section className={css.psychologists}>
+      <SortDropdown selected={sort} onChange={setSort} />
       <div className={css.psychologist}>
-        {psychologists.map((p) => (
+        {sortedList.map((p) => (
           <PsychologistCard key={p.id} data={p} />
         ))}
       </div>
