@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Button from "../Button/page";
 import { FirebaseError } from "firebase/app";
 import { useState } from "react";
-import { authSchema } from "../validation/validation";
+import { authSchema } from "../../validation/validation";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../../firebase";
 

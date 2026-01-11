@@ -3,7 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import css from "./AppointmentModal.module.css";
 import Button from "../Button/page";
 import { useState } from "react";
-import { appointmentSchema } from "../validation/validation";
+import { appointmentSchema } from "../../validation/validation";
 import type { AppointmentFormData } from "../../types/PsychologistsType";
 
 type Props = {

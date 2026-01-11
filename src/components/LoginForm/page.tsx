@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { loginUser } from "../../services/auth";
 import { FirebaseError } from "firebase/app";
 import { useState } from "react";
-import { loginSchema } from "../validation/validation";
+import { loginSchema } from "../../validation/validation";
 
 interface LoginFormValues {
   email: string;
