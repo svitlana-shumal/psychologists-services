@@ -88,13 +88,11 @@ export default function PsychologistCard({ data }: Props) {
 
         <p className={css.about}>{data.about}</p>
 
-        <button
-          className={css.readMore}
-          onClick={() => setShowReviews((prev) => !prev)}
-        >
-          {showReviews ? "Hide reviews" : "Read more"}
-        </button>
-
+        {!showReviews && (
+          <button className={css.readMore} onClick={() => setShowReviews(true)}>
+            Read more
+          </button>
+        )}
         {showReviews && data.reviews?.length > 0 && (
           <ReviewsBlock
             reviews={data.reviews}

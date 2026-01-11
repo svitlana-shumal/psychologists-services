@@ -4,12 +4,13 @@ import { useState } from "react";
 import Modal from "../Modal/page";
 import LoginForm from "../LoginForm/page";
 import AuthForm from "../AuthForm/page";
+import { useAuth } from "../../hooks/useAuth";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const isLoggedIn = false;
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
+  const { user, logout } = useAuth();
 
   const toggleMenu = () => {
     setIsOpen((prev) => !prev);
@@ -43,7 +44,7 @@ const Header = () => {
             Psychologists
           </NavLink>
 
-          {isLoggedIn && (
+          {user && (
             <NavLink
               to="/favorites"
               className={({ isActive }) =>
@@ -56,7 +57,7 @@ const Header = () => {
           )}
 
           <div className={css.auth}>
-            {!isLoggedIn ? (
+            {!user ? (
               <>
                 <button
                   className={css.authBtn}
@@ -72,7 +73,17 @@ const Header = () => {
                 </button>
               </>
             ) : (
-              <button className={css.authBtn}>Log out</button>
+              <div className={css.userBlock}>
+                <svg width={16} height={16} className={css.userIcon}>
+                  <use href="/symbol-defs.svg#icon-user" />
+                </svg>
+                <span className={css.userName}>
+                  {user.displayName || user.email}
+                </span>
+                <button className={css.authBtn} onClick={logout}>
+                  Log out
+                </button>
+              </div>
             )}
           </div>
         </nav>

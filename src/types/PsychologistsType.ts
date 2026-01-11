@@ -25,3 +25,11 @@ export type SortOption =
   | "rating-low"
   | "rating-high"
   | "";
+
+export type AppointmentFormData = {
+  name: string;
+  phone: string;
+  time: string;
+  email: string;
+  comment: string;
+};

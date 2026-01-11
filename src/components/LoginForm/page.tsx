@@ -1,21 +1,16 @@
 import Button from "../Button/page";
 import css from "./LoginForm.module.css";
-import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginUser } from "../../services/auth";
 import { FirebaseError } from "firebase/app";
 import { useState } from "react";
+import { loginSchema } from "../validation/validation";
 
 interface LoginFormValues {
   email: string;
   password: string;
 }
-
-const loginSchema = yup.object({
-  email: yup.string().email("Wrong email format").required("Email is required"),
-  password: yup.string().min(6, "Too short").required("Password is required"),
-});
 
 type Props = {
   onClose: () => void;

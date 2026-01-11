@@ -6,22 +6,18 @@ type Props = {
   selected: SortOption;
   onChange: (value: SortOption) => void;
 };
+const sortOptions: { label: string; value: SortOption }[] = [
+  { label: "A to Z", value: "a-z" },
+  { label: "Z to A", value: "z-a" },
+  { label: "Less than 10$", value: "price-low" },
+  { label: "Greater than 10$", value: "price-high" },
+  { label: "Popular", value: "rating-low" },
+  { label: "Not popular", value: "rating-high" },
+  { label: "Show all", value: "" },
+];
 
 export default function SortDropdown({ selected, onChange }: Props) {
-  const sortOptions = [
-    { label: "A to Z", value: "a-z" },
-    { label: "Z to A", value: "z-a" },
-    { label: "Less than 10$", value: "price-low" },
-    { label: "Greater than 10$", value: "price-high" },
-    { label: "Popular", value: "rating-high" },
-    { label: "Not popular", value: "rating-low" },
-    { label: "Show all", value: "" },
-  ];
-
   const [isOpenFilter, setIsOpenFilter] = useState(false);
-  const toggleFilter = () => {
-    setIsOpenFilter((prev) => !prev);
-  };
 
   const getLabel = (value: SortOption) => {
     const found = sortOptions.find((option) => option.value === value);
@@ -33,7 +29,7 @@ export default function SortDropdown({ selected, onChange }: Props) {
       <p className={css.nameFilter}>Filters</p>
       <button
         className={css.trigger}
-        onClick={toggleFilter}
+        onClick={() => setIsOpenFilter(!isOpenFilter)}
         aria-label="Toggle filter menu"
       >
         {getLabel(selected)}
@@ -54,7 +50,7 @@ export default function SortDropdown({ selected, onChange }: Props) {
                   selected === option.value ? css.active : ""
                 }`}
                 onClick={() => {
-                  onChange(option.value as SortOption);
+                  onChange(option.value);
                   setIsOpenFilter(false);
                 }}
               >

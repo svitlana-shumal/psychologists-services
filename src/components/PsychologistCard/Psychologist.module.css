@@ -70,7 +70,7 @@
 }
 .meta {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: space-between;
   gap: 12px;
 }
 .meta > p {
@@ -144,15 +144,14 @@
   .titleContent {
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
   }
   .title {
     gap: 10px;
     margin-bottom: 0;
   }
   .meta {
-    flex-wrap: nowrap;
-    gap: 32px;
+    gap: 20px;
   }
   .meta > p {
     font-weight: 500;
@@ -172,4 +171,7 @@
 }
 
 @media screen and (min-width: 1440px) {
+  .meta {
+    gap: 32px;
+  }
 }

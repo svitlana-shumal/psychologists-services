@@ -4,6 +4,8 @@ import { getPsychologists } from "../services/psychologists";
 import type { Psychologists, SortOption } from "../types/PsychologistsType";
 import PsychologistCard from "../components/PsychologistCard/page";
 import SortDropdown from "../components/Filters/page";
+import Loader from "../components/Loader/page";
+import EmptyState from "../components/EmptyState/page";
 
 export default function PsychologistsPage() {
   const [psychologists, setPsychologists] = useState<Psychologists[]>([]);
@@ -62,19 +64,33 @@ export default function PsychologistsPage() {
   const sortedList = sortPsychologists(psychologists, sort);
 
   return (
-    <section className={css.psychologists}>
-      <SortDropdown selected={sort} onChange={setSort} />
-      <div className={css.psychologist}>
-        {sortedList.map((p) => (
-          <PsychologistCard key={p.id} data={p} />
-        ))}
-      </div>
+    <>
+      {loading && psychologists.length === 0 ? (
+        <Loader />
+      ) : (
+        <section className={css.psychologists}>
+          <SortDropdown selected={sort} onChange={setSort} />
+          <div className={css.psychologist}>
+            {sortedList.map((p) => (
+              <PsychologistCard key={p.id} data={p} />
+            ))}
+          </div>
 
-      {lastKey && (
-        <button onClick={handleLoadMore} disabled={loading} className={css.btn}>
-          {loading ? "Loading..." : "Load more"}
-        </button>
+          {!loading && psychologists.length === 0 && (
+            <EmptyState message="No psychologists found" />
+          )}
+
+          {lastKey && (
+            <button
+              onClick={handleLoadMore}
+              disabled={loading}
+              className={css.btn}
+            >
+              {loading ? "Loading..." : "Load more"}
+            </button>
+          )}
+        </section>
       )}
-    </section>
+    </>
   );
 }

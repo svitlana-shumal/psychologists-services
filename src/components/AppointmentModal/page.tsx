@@ -1,31 +1,16 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import css from "./AppointmentModal.module.css";
 import Button from "../Button/page";
 import { useState } from "react";
+import { appointmentSchema } from "../validation/validation";
+import type { AppointmentFormData } from "../../types/PsychologistsType";
 
 type Props = {
   psychologistName: string;
   psychologistAvatar: string;
   onClose: () => void;
 };
-
-type AppointmentFormData = {
-  name: string;
-  phone: string;
-  time: string;
-  email: string;
-  comment: string;
-};
-
-const schema = yup.object().shape({
-  name: yup.string().required("Name is required"),
-  phone: yup.string().required("Phone is required"),
-  time: yup.string().required("Time is required"),
-  email: yup.string().email("Invalid email").required("Email is required"),
-  comment: yup.string().required("Comment is required"),
-});
 
 export const AppointmentModal = ({
   psychologistName,
@@ -38,7 +23,9 @@ export const AppointmentModal = ({
     formState: { errors },
     setValue,
     clearErrors,
-  } = useForm<AppointmentFormData>({ resolver: yupResolver(schema) });
+  } = useForm<AppointmentFormData>({
+    resolver: yupResolver(appointmentSchema),
+  });
 
   const availableTimes = [
     "09:00",

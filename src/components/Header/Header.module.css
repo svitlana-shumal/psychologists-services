@@ -54,7 +54,7 @@
 .authBtn {
   border: 1px solid rgba(25, 26, 21, 0.2);
   border-radius: 30px;
-  padding: 10px 25px;
+  padding: 10px 24px;
   background: transparent;
   font-size: 16px;
   font-weight: 500;
@@ -81,6 +81,26 @@
   background-color: #36a379;
   transform: translateY(-2px);
 }
+.userBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.userIcon {
+  border-radius: 10px;
+  width: 30px;
+  height: 30px;
+  background-color: #54be96;
+  fill: #fbfbfb;
+  flex-shrink: 0;
+}
+
+.userName {
+  font-weight: 500;
+  font-size: 14px;
+  color: #191a15;
+}
 .burger {
   background: none;
   border: none;
@@ -100,7 +120,6 @@
     display: flex;
     flex: 1;
     flex-direction: row;
-    gap: 40px;
     position: static;
     width: auto;
     background: transparent;
@@ -112,7 +131,6 @@
   .navList {
     position: relative;
     font-weight: 400;
-    font-size: 18px;
     line-height: 1.25;
     letter-spacing: -0.01em;
     color: #191a15;
@@ -146,6 +164,21 @@
   .burger {
     display: none;
   }
+  .userBlock {
+    flex-direction: row;
+  }
+  .userIcon {
+    width: 40px;
+    height: 40px;
+  }
+  .userName {
+    font-size: 16px;
+    max-width: 50px; /* або 150px */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+  }
 }
 /* Десктоп (1025px) */
 
@@ -159,13 +192,16 @@
   .nav {
     gap: 40px;
   }
-  .navList {
-    font-size: 18px;
-  }
   .authBtn {
     padding: 14px 39px;
   }
   .registration {
     padding: 14px 40px;
+  }
+  .userBlock {
+    gap: 14px;
+  }
+  .userName {
+    max-width: 100px;
   }
 }

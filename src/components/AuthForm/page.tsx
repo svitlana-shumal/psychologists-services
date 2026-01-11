@@ -1,23 +1,18 @@
 import css from "./AuthForm.module.css";
-import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Button from "../Button/page";
-import { registerUser } from "../../services/auth";
 import { FirebaseError } from "firebase/app";
 import { useState } from "react";
+import { authSchema } from "../validation/validation";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth } from "../../firebase";
 
 interface AuthFormValues {
   name: string;
   email: string;
   password: string;
 }
-
-const authSchema = yup.object({
-  name: yup.string().min(2, "Too short name").required("Name is required"),
-  email: yup.string().email("Wrong email format").required("Email is required"),
-  password: yup.string().min(6, "Too short").required("Password is required"),
-});
 
 type Props = {
   onClose: () => void;
@@ -30,9 +25,19 @@ export default function AuthForm({ onClose }: Props) {
     formState: { errors },
   } = useForm<AuthFormValues>({ resolver: yupResolver(authSchema) });
   const [showPassword, setShowPassword] = useState(false);
+
+  async function handleRegister(email: string, password: string, name: string) {
+    const { user } = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    await updateProfile(user, { displayName: name });
+  }
+
   const onSubmit = async (data: AuthFormValues) => {
     try {
-      await registerUser(data.email, data.password);
+      await handleRegister(data.email, data.password, data.name);
       alert("Користувач зареєстрований");
       onClose();
       console.log(data);
