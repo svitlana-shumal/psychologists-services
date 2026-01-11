@@ -55,8 +55,8 @@
   align-items: center;
   justify-content: center;
   stroke-width: 2px;
-  stroke: #191a15;
-  fill: #fbfbfb;
+  stroke: var(--color-text);
+  fill: var(--color-bg);
   position: absolute;
   top: 16px;
   right: 16px;

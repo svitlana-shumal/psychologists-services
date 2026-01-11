@@ -3,7 +3,7 @@
   flex-direction: column;
   gap: 16px;
   padding: 16px;
-  background-color: #fbfbfb;
+  background-color: var(--color-bg);
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   transition: box-shadow 0.2s ease;
@@ -58,7 +58,7 @@
   font-weight: 500;
   font-size: 24px;
   line-height: 1;
-  color: #191a15;
+  color: var(--color-text);
   margin: 0;
   /* margin-bottom: 12px; */
 }
@@ -77,7 +77,7 @@
   font-weight: 500;
   font-size: 14px;
   line-height: 1.5;
-  color: #191a15;
+  color: var(--color-text);
   margin: 0;
 }
 .star {
@@ -88,8 +88,8 @@
 }
 .heartButton {
   stroke-width: 2px;
-  fill: #fbfbfb;
-  stroke: #191a15;
+  fill: var(--color-bg);
+  stroke: var(--color-text);
 }
 .details {
   list-style: none;
@@ -108,11 +108,11 @@
   color: #8a8a89;
   border-radius: 20px;
   padding: 6px 12px;
-  background-color: #f3f3f3;
+  background-color: var(--color-bg);
   width: auto;
 }
 .value {
-  color: #191a15;
+  color: var(--color-text);
 }
 .about {
   font-weight: 400;
@@ -126,7 +126,7 @@
   line-height: 1.5;
   text-decoration: underline;
   text-decoration-skip-ink: none;
-  color: #191a15;
+  color: var(--color-text);
   text-align: start;
 }
 @media screen and (min-width: 768px) {

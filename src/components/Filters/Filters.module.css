@@ -14,7 +14,7 @@
 /* Кнопка-триггер */
 .trigger {
   width: 100%;
-  background-color: #54be96;
+  background-color: var(--color-primary);
   border-radius: 12px;
   padding: 16px 18px;
   font-size: 14px;
@@ -23,7 +23,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 8px;
-  color: #fbfbfb;
+  color: var(--color-bg);
   transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 /* Меню  */
@@ -31,13 +31,12 @@
   top: 14px;
   right: 14px;
   stroke-width: 2px;
-  stroke: #fbfbfb;
+  stroke: var(--color-bg);
 }
 .menu {
   position: absolute;
   top: 100%;
   left: 0;
-  background: #fff;
   border-radius: 14px;
   border: 1px solid rgba(25, 26, 21, 0.1);
   margin-top: 4px;
@@ -46,7 +45,7 @@
   padding: 14px 18px;
   width: 100%;
   box-shadow: 0 20px 69px 0 rgba(0, 0, 0, 0.07);
-  background-color: #fff;
+  background-color: var(--color-bg);
 } /* Елементи меню */
 .item {
   font-weight: 400;
@@ -61,10 +60,10 @@
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 .item:hover {
-  color: #191a15;
+  color: var(--color-text);
 } /* Активний стан */
 .active {
-  color: #191a15;
+  color: var(--color-text);
 }
 @media screen and (min-width: 768px) {
   .trigger {

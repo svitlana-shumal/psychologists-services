@@ -5,7 +5,7 @@
   padding: 16px 0;
 }
 .header {
-  background-color: #fbfbfb;
+  background-color: var(--color-bg);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -16,15 +16,31 @@
   display: flex;
   align-items: center;
 }
+.logoSpan {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-primary);
+  margin: 0;
+}
+.logoTitle {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  margin: 0;
+}
 .nav {
   display: none;
   flex-direction: column;
   gap: 16px;
   position: absolute;
-  top: 60px;
+  top: 50px;
   left: 0;
   width: 100%;
-  background: #fff;
+  background: var(--color-bg);
   padding: 20px;
   text-align: center;
 }
@@ -36,7 +52,7 @@
   font-size: 16px;
   line-height: 1.25;
   letter-spacing: -0.01em;
-  color: #191a15;
+  color: var(--color-text);
   text-decoration: none;
   transition: color 0.3s ease;
 }
@@ -54,14 +70,14 @@
 .authBtn {
   border: 1px solid rgba(25, 26, 21, 0.2);
   border-radius: 30px;
-  padding: 10px 24px;
+  padding: 10px 20px;
   background: transparent;
   font-size: 16px;
   font-weight: 500;
   line-height: 1.25;
   letter-spacing: -0.01em;
   cursor: pointer;
-  color: #191a15;
+  color: var(--color-text);
 }
 .authBtn:hover {
   transform: translateY(-2px);
@@ -71,14 +87,14 @@
   padding: 10px 20px;
   font-size: 16px;
   font-weight: 500;
-  color: #fbfbfb;
-  background-color: #54be96;
+  color: var(--color-bg);
+  background-color: var(--color-primary);
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 .registration:hover {
-  background-color: #36a379;
+  background-color: var(--color-secondary);
   transform: translateY(-2px);
 }
 .userBlock {
@@ -91,15 +107,15 @@
   border-radius: 10px;
   width: 30px;
   height: 30px;
-  background-color: #54be96;
-  fill: #fbfbfb;
+  background-color: var(--color-primary);
+  fill: var(--color-bg);
   flex-shrink: 0;
 }
 
 .userName {
   font-weight: 500;
   font-size: 14px;
-  color: #191a15;
+  color: var(--color-text);
 }
 .burger {
   background: none;
@@ -109,7 +125,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #191a15;
+  color: var(--color-text);
   transition: transform 0.3s ease;
 }
 
@@ -133,7 +149,7 @@
     font-weight: 400;
     line-height: 1.25;
     letter-spacing: -0.01em;
-    color: #191a15;
+    color: var(--color-text);
     text-decoration: none;
     transition: color 0.3s ease;
   }
@@ -145,7 +161,7 @@
     transform: translateX(-50%);
     width: 6px;
     height: 6px;
-    background-color: #54be96;
+    background-color: var(--color-primary);
     border-radius: 50%;
   }
   .auth {
@@ -156,6 +172,7 @@
     margin-left: auto;
     margin-top: 0;
   }
+
   .authBtn,
   .registration {
     width: auto;
@@ -168,16 +185,25 @@
     flex-direction: row;
   }
   .userIcon {
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
   }
   .userName {
     font-size: 16px;
-    max-width: 50px; /* або 150px */
+    max-width: 50px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     display: inline-block;
+  }
+  .logo {
+    margin-right: 10px;
+  }
+  .logoSpan {
+    font-size: 20px;
+  }
+  .logoTitle {
+    font-size: 20px;
   }
 }
 /* Десктоп (1025px) */
@@ -203,5 +229,9 @@
   }
   .userName {
     max-width: 100px;
+  }
+  .userIcon {
+    width: 40px;
+    height: 40px;
   }
 }

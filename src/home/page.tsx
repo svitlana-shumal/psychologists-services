@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import css from "./Home.module.css";
+import ThemeSwitcher from "../components/ThemeSwitcher/ThemeSwitcher";
 
 const Home = () => {
   return (
     <main className={css.container}>
+      <ThemeSwitcher />
       <section className={css.hero}>
         <div className={css.context}>
           <h1 className={css.title}>

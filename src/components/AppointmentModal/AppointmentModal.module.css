@@ -1,5 +1,5 @@
 .modal {
-  background: #fff;
+  background: var(--color-bg);
   border-radius: 16px;
   margin: auto;
   width: 100%;
@@ -11,7 +11,7 @@
   font-size: 40px;
   line-height: 1.2;
   letter-spacing: -0.02em;
-  color: #191a15;
+  color: var(--color-text);
   margin-top: 12px;
   margin-bottom: 15px;
 }
@@ -44,7 +44,7 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 1.5;
-  color: #191a15;
+  color: var(--color-text);
   margin: 0;
 }
 .form {
@@ -59,7 +59,7 @@ textarea {
   border-radius: 12px;
   border: 1px solid rgba(25, 26, 21, 0.1);
   font-size: 14px;
-  color: #191a15;
+  color: var(--color-text);
 }
 
 textarea {
@@ -97,22 +97,21 @@ textarea {
   padding: 16px 18px;
   border-radius: 12px;
   border: 1px solid rgba(25, 26, 21, 0.1);
-  background-color: #fff;
+  background-color: var(--color-bg);
   cursor: pointer;
   font-size: 14px;
-  color: #191a15;
+  color: var(--color-text);
 }
 .clockIcon {
-  /* stroke-width: 1.5; */
-  stroke: #191a15;
-  fill: #fbfbfb;
+  stroke: var(--color-text);
+  fill: var(--color-bg);
 }
 .dropdown {
   position: absolute;
   top: 100%;
   left: 0;
   width: 100%;
-  background: #fff;
+  background: var(--color-bg);
   border-radius: 12px;
   border: 1px solid rgba(25, 26, 21, 0.1);
   margin-top: 4px;

@@ -7,7 +7,7 @@
   font-size: 40px;
   line-height: 1.2;
   letter-spacing: -0.02em;
-  color: #191a15;
+  color: var(--color-text);
   margin-top: 0;
   margin-bottom: 20px;
 }
@@ -55,8 +55,8 @@
   align-items: center;
   justify-content: center;
   stroke-width: 2px;
-  stroke: #191a15;
-  fill: #fbfbfb;
+  stroke: var(--color-text);
+  fill: var(--color-bg);
   position: absolute;
   top: 16px;
   right: 16px;

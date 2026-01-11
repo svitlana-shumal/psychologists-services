@@ -5,9 +5,9 @@
   width: 100%;
   border-radius: 30px;
   height: 52px;
-  background-color: #54be96;
+  background-color: var(--color-primary);
   font-weight: 500;
   font-size: 16px;
   line-height: 1.25;
-  color: #fbfbfb;
+  color: var(--color-bg);
 }

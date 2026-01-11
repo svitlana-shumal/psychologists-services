@@ -10,6 +10,7 @@ function App() {
     <Container>
       <Header />
       <div className={css.divider}></div>
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/psychologists" element={<Psychologists />} />

@@ -2,7 +2,7 @@
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
-  padding: 15px 0px;
+  padding: 0px 0px;
 }
 .hero {
   display: flex;
@@ -15,19 +15,19 @@
   font-size: 40px;
   line-height: 1.025;
   letter-spacing: -0.02em;
-  color: #191a15;
+  color: var(--color-text);
   margin-bottom: 20px;
 }
 .subtitle {
   font-style: italic;
-  color: #54be96;
+  color: var(--color-primary);
 }
 .desc {
   font-weight: 500;
   font-size: 18px;
   line-height: 1.33;
   letter-spacing: -0.02em;
-  color: #191a15;
+  color: var(--color-text);
   margin-bottom: 18px;
 }
 .btn {
@@ -40,12 +40,12 @@
   font-size: 18px;
   line-height: 1.2;
   letter-spacing: -0.01em;
-  color: #fbfbfb;
-  background-color: #54be96;
+  color: var(--color-bg);
+  background-color: var(--color-primary);
   margin-bottom: 32px;
 }
 .btn:hover {
-  background-color: #36a379;
+  background-color: var(--color-secondary);
   transform: translateX(2px);
   transition: transform 0.3s ease;
 }
@@ -63,7 +63,7 @@ img {
 .statBox {
   position: absolute;
   bottom: 25px;
-  background-color: #54be96;
+  background-color: var(--color-primary);
   padding: 10px;
   border-radius: 8px;
   font-weight: 400;
@@ -81,12 +81,12 @@ img {
 }
 .iconClick {
   border-radius: 10px;
-  background-color: #fbfbfb;
+  background-color: var(--color-bg);
   padding: 4px;
   flex-shrink: 0;
   width: 35px;
   height: 35px;
-  fill: #54be96;
+  fill: var(--color-primary);
 }
 .iconQuestion {
   position: absolute;
@@ -98,7 +98,7 @@ img {
   left: 12px;
   width: 30px;
   height: 30px;
-  fill: #fbfbfb;
+  fill: var(--color-bg);
 }
 .iconUsers {
   position: absolute;
@@ -110,19 +110,19 @@ img {
   right: 12px;
   width: 35px;
   height: 35px;
-  fill: #fbfbfb;
+  fill: var(--color-bg);
 }
 strong {
   font-weight: 700;
   font-size: 20px;
-  color: #fbfbfb;
+  color: var(--color-bg);
 }
 
 /* для планшетів */
 
 @media screen and (min-width: 768px) {
   .container {
-    padding-top: 39px;
+    padding-top: 0px;
     padding-bottom: 50px;
   }
   .hero {
@@ -133,12 +133,7 @@ strong {
     text-align: start;
     gap: 50px;
   }
-  /* .context {
-    flex: 1;
-    max-width: 330px;
-  } */
   .title {
-    margin-top: 48px;
     font-size: 45px;
     text-align: start;
   }
@@ -155,9 +150,6 @@ strong {
     text-align: center;
     align-items: center;
   }
-  /* .imageWrapper {
-    flex: 1;
-  } */
   .statBox {
     bottom: 50px;
     left: -30px;
@@ -167,7 +159,6 @@ strong {
   .iconClick {
     width: 32px;
     height: 32px;
-    padding: 4px;
   }
   .iconQuestion,
   .iconUsers {
@@ -188,7 +179,7 @@ strong {
 
 @media screen and (min-width: 1440px) {
   .container {
-    padding-top: 78px;
+    padding-top: 0px;
     padding-bottom: 100px;
   }
   .hero {

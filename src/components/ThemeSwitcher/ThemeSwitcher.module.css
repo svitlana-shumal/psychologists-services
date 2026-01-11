@@ -1,0 +1,79 @@
+/* .theme {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 10px;
+}
+
+.btn {
+  width: 65px;
+  padding: 10px 10px;
+  border-radius: 15px;
+  background-color: var(--color-primary);
+  color: var(--color-bg);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+.btn:hover {
+  background-color: var(--color-secondary);
+}
+
+@media screen and (min-width: 768px) {
+  .btn {
+    font-size: 16px;
+    width: 80px;
+    padding: 15px 15px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .btn {
+    font-size: 18px;
+    width: 100px;
+  }
+} */
+.wrapper {
+  width: 130px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: auto;
+  gap: 5px;
+  padding: 10px;
+  background-color: var(--color-primary);
+}
+.label {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--color-bg);
+  text-align: end;
+}
+
+.select {
+  padding: 8px 12px;
+  border-radius: 15px;
+  border: none;
+  background-color: var(--color-bg);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+@media screen and (min-width: 768px) {
+  .wrapper {
+    width: 150px;
+  }
+  .label,
+  .select {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+}

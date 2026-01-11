@@ -20,9 +20,9 @@ const Header = () => {
     <section className={css.container}>
       <header className={css.header}>
         <Link to="/" className={css.logo}>
-          <svg width={218} height={28}>
-            <use href="/symbol-defs.svg#icon-logo-1" />
-          </svg>
+          <h2 className={css.logoTitle}>
+            <span className={css.logoSpan}>psychologists.</span>services
+          </h2>
         </Link>
         <nav className={`${css.nav} ${isOpen ? css.open : ""}`}>
           <NavLink

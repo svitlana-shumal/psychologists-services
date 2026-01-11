@@ -12,17 +12,17 @@
   padding: 14px 48px;
   width: 176px;
   height: 48px;
-  background-color: #54be96;
+  background-color: var(--color-primary);
   font-weight: 500;
   font-size: 16px;
   line-height: 1.25;
   letter-spacing: -0.01em;
-  color: #fbfbfb;
+  color: var(--color-bg);
   display: flex;
   margin: 0 auto;
   margin-top: 64px;
 }
 .btn:hover {
-  background-color: #36a379;
+  background-color: var(--color-secondary);
   transform: translateY(-2px);
 }
