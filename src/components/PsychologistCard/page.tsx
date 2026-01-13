@@ -1,15 +1,45 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Psychologists } from "../../types/PsychologistsType";
 import css from "./Psychologist.module.css";
 import { ReviewsBlock } from "../Reviews/page";
 import { AppointmentModal } from "../AppointmentModal/page";
 import Modal from "../Modal/page";
+import { useAuth } from "../../hooks/useAuth";
+import {
+  addToFavorites,
+  checkFavorite,
+  removeFromFavorites,
+} from "../../services/favorite";
+import toast from "react-hot-toast";
 
 type Props = { data: Psychologists };
 
 export default function PsychologistCard({ data }: Props) {
   const [showReviews, setShowReviews] = useState(false);
   const [showModal, setShowModal] = useState(false);
+
+  const { user } = useAuth();
+  const [isFavorite, setIsFavorites] = useState(false);
+
+  useEffect(() => {
+    if (user) {
+      checkFavorite(user.uid, data.id).then(setIsFavorites);
+    }
+  }, [user, data.id]);
+
+  const toggleFavorite = async () => {
+    if (!user) {
+      toast("This functionality is only available to authorized users.");
+      return;
+    }
+    if (isFavorite) {
+      await removeFromFavorites(user.uid, data.id);
+      setIsFavorites(false);
+    } else {
+      await addToFavorites(user.uid, data.id);
+      setIsFavorites(true);
+    }
+  };
 
   const handleAppoinmentClick = () => {
     setShowModal(true);
@@ -29,7 +59,7 @@ export default function PsychologistCard({ data }: Props) {
       <div className={css.right}>
         <div className={css.titleContent}>
           <div className={css.title}>
-            <span className={css.spanSpan}>Psychologist</span>
+            <span className={css.spanLabel}>Psychologist</span>
             <h3>{data.name}</h3>
           </div>
 
@@ -44,24 +74,16 @@ export default function PsychologistCard({ data }: Props) {
               <span>Price/hour: </span>
               <span className={css.price}>{data.price_per_hour}$</span>
             </p>
-            <button className={css.heartButton} aria-label="Add to favorites">
-              <svg width="26" height="26">
+
+            <button
+              className={`${css.heartButton} ${isFavorite ? css.active : ""}`}
+              aria-label="Add to favorites"
+              onClick={toggleFavorite}
+            >
+              <svg width="26" height="26" className={css.icon}>
                 <use href="/symbol-defs.svg#icon-heart" />
               </svg>
             </button>
-
-            {/* <button
-    //         className={css.heartButton}
-    //         onClick={() => toggleFavorite(car.id)}
-    //       >
-    //         <svg width="26" height="26">
-    //           <use
-    //             href={`/symbol-defs.svg#${
-    //               isFavorite ? "icon-heart-hover" : "icon-heart"
-    //             }`}
-    //           />
-    //         </svg>
-    //       </button> */}
           </div>
         </div>
 

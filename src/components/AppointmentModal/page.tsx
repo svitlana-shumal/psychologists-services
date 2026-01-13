@@ -5,6 +5,7 @@ import Button from "../Button/page";
 import { useState } from "react";
 import { appointmentSchema } from "../../validation/validation";
 import type { AppointmentFormData } from "../../types/PsychologistsType";
+import toast from "react-hot-toast";
 
 type Props = {
   psychologistName: string;
@@ -42,9 +43,15 @@ export const AppointmentModal = ({
   const [selectedTime, setSelectedTime] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const onSubmit = (data: AppointmentFormData) => {
-    console.log("Appointment data:", data);
-    onClose();
+  const onSubmit = async (data: AppointmentFormData) => {
+    try {
+      console.log("Appointment data:", data);
+      toast.success("Application successfully sent ✅");
+      onClose();
+    } catch (error) {
+      console.error("Appointment error:", error);
+      toast.error("Failed to send application ❌");
+    }
   };
 
   return (

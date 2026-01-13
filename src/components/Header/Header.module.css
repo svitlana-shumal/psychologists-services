@@ -5,12 +5,20 @@
   padding: 16px 0;
 }
 .header {
-  background-color: var(--color-bg);
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: sticky;
   z-index: 1000;
+  margin: 0 auto;
+}
+.header::after {
+  content: "";
+  position: absolute;
+  bottom: -16px;
+  width: 100%;
+  height: 1px;
+  background-color: rgba(25, 26, 21, 0.1);
 }
 .logo {
   display: flex;
@@ -156,13 +164,13 @@
   .active::after {
     content: "";
     position: absolute;
-    bottom: -6px;
+    bottom: -10px;
     left: 50%;
     transform: translateX(-50%);
-    width: 6px;
-    height: 6px;
+    width: 8px;
+    height: 8px;
     background-color: var(--color-primary);
-    border-radius: 50%;
+    border-radius: 100%;
   }
   .auth {
     display: flex;
@@ -211,6 +219,9 @@
 @media screen and (min-width: 1440px) {
   .container {
     padding: 24px 0px;
+  }
+  .header::after {
+    bottom: -24px;
   }
   .logo {
     margin-right: 130px;

@@ -12,7 +12,6 @@ export default function PsychologistsPage() {
   const [lastKey, setLastKey] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  // перша порція
   useEffect(() => {
     async function fetchFirstPage() {
       setLoading(true);
@@ -26,7 +25,6 @@ export default function PsychologistsPage() {
     fetchFirstPage();
   }, []);
 
-  // завантаження наступних порцій
   const handleLoadMore = async () => {
     if (!lastKey) return;
     setLoading(true);
@@ -35,7 +33,7 @@ export default function PsychologistsPage() {
       setPsychologists((prev) => [...prev, ...data]);
       setLastKey(data[data.length - 1].id);
     } else {
-      setLastKey(null); // більше даних немає
+      setLastKey(null);
     }
     setLoading(false);
   };

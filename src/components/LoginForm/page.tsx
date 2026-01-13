@@ -6,6 +6,7 @@ import { loginUser } from "../../services/auth";
 import { FirebaseError } from "firebase/app";
 import { useState } from "react";
 import { loginSchema } from "../../validation/validation";
+import toast from "react-hot-toast";
 
 interface LoginFormValues {
   email: string;
@@ -28,28 +29,28 @@ export default function LoginForm({ onClose }: Props) {
   const onSubmit = async (data: LoginFormValues) => {
     try {
       await loginUser(data.email, data.password);
-      alert("Користувач успішно залогінився");
+      toast.success("You have successfully logged in");
       onClose();
     } catch (error) {
       if (error instanceof FirebaseError) {
         switch (error.code) {
           case "auth/user-not-found":
-            alert("Користувача з такою поштою не існує");
+            toast.error("User with this email address does not exist");
             break;
 
           case "auth/wrong-password":
-            alert("Неправильний пароль");
+            toast.error("Incorrect password");
             break;
 
           case "auth/invalid-credential":
-            alert("Неправильна пошта або пароль");
+            toast.error("Incorrect email or password");
             break;
 
           default:
-            alert(error.message);
+            toast(error.message);
         }
       } else {
-        alert("Невідома помилка");
+        toast.error("Unknown error");
       }
     }
   };

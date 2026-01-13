@@ -28,8 +28,10 @@ export async function getPsychologists(
   const snapshot = await get(q);
   if (!snapshot.exists()) return [];
   const data = snapshot.val() as Record<string, PsychologistsFromDB>;
-  return Object.entries(data).map(([id, value]) => ({
-    id,
-    ...value,
-  }));
+  return Object.entries(data)
+    .map(([id, value]) => ({
+      id,
+      ...value,
+    }))
+    .sort((a, b) => Number(a.id) - Number(b.id));
 }

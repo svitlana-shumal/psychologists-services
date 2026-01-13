@@ -7,6 +7,7 @@ import { useState } from "react";
 import { authSchema } from "../../validation/validation";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../../firebase";
+import toast from "react-hot-toast";
 
 interface AuthFormValues {
   name: string;
@@ -38,33 +39,32 @@ export default function AuthForm({ onClose }: Props) {
   const onSubmit = async (data: AuthFormValues) => {
     try {
       await handleRegister(data.email, data.password, data.name);
-      alert("Користувач зареєстрований");
+      toast.success("User registered");
       onClose();
-      console.log(data);
     } catch (error) {
       if (error instanceof FirebaseError) {
         switch (error.code) {
           case "auth/user-not-found":
-            alert("Користувача з такою поштою не існує");
+            toast.error("User with this email address does not exist.");
             break;
 
           case "auth/wrong-password":
-            alert("Неправильний пароль");
+            toast.error("Incorrect password");
             break;
 
           case "auth/invalid-credential":
-            alert("Неправильна пошта або пароль");
+            toast.error("Incorrect email or password");
             break;
 
           case "auth/invalid-email":
-            alert("Неправильна пошта або пароль");
+            toast.error("Incorrect email or password");
             break;
 
           default:
-            alert(error.message);
+            toast(error.message);
         }
       } else {
-        alert("Невідома помилка");
+        toast.error("Unknown error");
       }
     }
   };
