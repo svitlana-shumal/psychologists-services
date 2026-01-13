@@ -1,73 +1,77 @@
-# React + TypeScript + Vite
+# 🧠 Psychologists App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🔍 About the Project
 
-Currently, two official plugins are available:
+**Psychologists App** is a web application for a company that provides psychological services.  
+Users can browse a list of psychologists, sort them by different criteria, add specialists to favorites, and book a consultation.  
+The app includes user authentication and private pages.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## ⚙️ Features
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+- Home page with service presentation
+- Psychologists list with sorting:
+  - alphabetically
+  - by price
+  - by rating
+- Incremental loading of cards (Load more)
+- Detailed psychologist information (Read more)
+- Add / remove psychologists to favorites
+- Private **Favorites** page
+- User registration and authentication
+- Appointment booking via modal form
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 📄 Pages
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **🏠Home** — service introduction and navigation to psychologists list
+- **👩‍⚕️/👨‍⚕️Psychologists** — list of psychologists with filtering and cards
+- **❤️Favorites** — private page with selected psychologists
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🔑 Authentication & Data
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- Authentication via **Firebase Authentication**
+- Psychologists data stored in **Firebase Realtime Database**
+- Favorites stored in Firebase
+- Favorites state persists after page reload
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## The psychologists.json file was used to populate the collection.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🛠 Technologies
+
+- React
+- React Router
+- Firebase (Authentication, Realtime Database)
+- React Hook Form
+- Yup
+- Vite
+- HTML5 / CSS3
+- JavaScript (ES6+)
+
+---
+
+## 🎨 Design
+
+The user interface was implemented according to the
+
+👉 [Figma design](https://www.figma.com/design/I5vjNb0NsJOpQRnRpMloSY/Psychologists.Services?node-id=0-1&p=f&t=KWAedC6DdNOPIPzC-0)
+
+---
+
+## 📋 Technical Requirements
+
+The project requirements are described in the  
+👉 [Technical specification document](https://docs.google.com/document/d/1PrTxBn6HQbb0Oz17g5_zvyLGIOZg0TIP3HPaEEp6ZLs/edit?tab=t.0)
+
+---
+
+## 🚀 Deployment
+
+The project is deployed on Vercel
+🔗 **Live Demo:https://psychologists-services-livid.vercel.app/**
+
+---
