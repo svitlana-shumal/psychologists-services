@@ -14,13 +14,22 @@ export default function PsychologistsPage() {
 
   useEffect(() => {
     async function fetchFirstPage() {
-      setLoading(true);
-      const data = await getPsychologists(null);
-      setPsychologists(data);
-      if (data.length > 0) {
-        setLastKey(data[data.length - 1].id);
+      try {
+        setLoading(true);
+        const data = (await getPsychologists(null)) || [];
+        setPsychologists(data);
+        if (data.length > 0 && data[data.length - 1].id) {
+          setLastKey(data[data.length - 1].id);
+        } else {
+          setLastKey(null);
+        }
+      } catch (error) {
+        console.error("Error fetching psychologists:", error);
+        setPsychologists([]);
+        setLastKey(null);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     }
     fetchFirstPage();
   }, []);
@@ -29,9 +38,9 @@ export default function PsychologistsPage() {
     if (!lastKey) return;
     setLoading(true);
     const data = await getPsychologists(lastKey);
-    if (data.length > 0) {
+    if (data && data.length > 0) {
       setPsychologists((prev) => [...prev, ...data]);
-      setLastKey(data[data.length - 1].id);
+      setLastKey(data[data.length - 1].id ?? null);
     } else {
       setLastKey(null);
     }
@@ -47,7 +56,9 @@ export default function PsychologistsPage() {
       case "z-a":
         return [...list].sort((a, b) => b.name.localeCompare(a.name));
       case "price-low":
-        return [...list].sort((a, b) => a.price_per_hour - b.price_per_hour);
+        return [...list].sort(
+          (a, b) => (a.price_per_hour ?? 0) - (b.price_per_hour ?? 0)
+        );
       case "price-high":
         return [...list].sort((a, b) => b.price_per_hour - a.price_per_hour);
       case "rating-low":
