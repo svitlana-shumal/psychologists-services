@@ -27,6 +27,7 @@ export function useFavorites() {
   const { user } = useAuth();
   const [favorites, setFavorites] = useState<Psychologists[]>([]);
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     async function fetchFavorites() {
       if (!user) {
@@ -55,5 +56,17 @@ export function useFavorites() {
     }
     fetchFavorites();
   }, [user]);
-  return { favorites, loading };
+
+  const addFavorite = async (psych: Psychologists) => {
+    if (!user) return;
+    await addToFavorites(user.uid, psych.id);
+    setFavorites((prev) => [...prev, psych]);
+  };
+  const removeFavorite = async (id: string) => {
+    if (!user) return;
+    await removeFromFavorites(user.uid, id);
+    setFavorites((prev) => prev.filter((p) => p.id !== id));
+  };
+
+  return { favorites, loading, addFavorite, removeFavorite };
 }

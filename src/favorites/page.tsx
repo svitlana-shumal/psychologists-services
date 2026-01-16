@@ -4,7 +4,7 @@ import PsychologistCard from "../components/PsychologistCard/page";
 import { useFavorites } from "../services/favorite";
 
 export function FavoritesPage() {
-  const { favorites, loading } = useFavorites();
+  const { favorites, loading, removeFavorite } = useFavorites();
 
   return (
     <div className={css.favoritesCard}>
@@ -16,7 +16,10 @@ export function FavoritesPage() {
         <ul className={css.list}>
           {favorites.map((psych) => (
             <li key={psych.id}>
-              <PsychologistCard data={psych} />
+              <PsychologistCard
+                data={psych}
+                onRemove={(id) => removeFavorite(id)}
+              />
             </li>
           ))}
         </ul>

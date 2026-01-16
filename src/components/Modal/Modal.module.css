@@ -28,9 +28,9 @@
 }
 /* планшетна версія */
 @media screen and (min-width: 768px) {
-  .backdrop {
+  /* .backdrop {
     padding: 60px 128px;
-  }
+  } */
   .modal {
     padding: 40px;
     /* max-width: 500px; */
@@ -43,9 +43,9 @@
 
 /* десктопна */
 @media screen and (min-width: 1440px) {
-  .backdrop {
+  /* .backdrop {
     padding: 145px 437px;
-  }
+  } */
   .modal {
     padding: 64px;
   }

@@ -12,9 +12,12 @@ import {
 } from "../../services/favorite";
 import toast from "react-hot-toast";
 
-type Props = { data: Psychologists };
+type Props = {
+  data: Psychologists;
+  onRemove?: (id: string) => void;
+};
 
-export default function PsychologistCard({ data }: Props) {
+export default function PsychologistCard({ data, onRemove }: Props) {
   const [showReviews, setShowReviews] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
@@ -35,6 +38,7 @@ export default function PsychologistCard({ data }: Props) {
     if (isFavorite) {
       await removeFromFavorites(user.uid, data.id);
       setIsFavorites(false);
+      onRemove?.(data.id);
     } else {
       await addToFavorites(user.uid, data.id);
       setIsFavorites(true);
