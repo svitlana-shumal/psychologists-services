@@ -6,11 +6,13 @@ import PsychologistCard from "../components/PsychologistCard/page";
 import SortDropdown from "../components/Filters/page";
 import Loader from "../components/Loader/page";
 import EmptyState from "../components/EmptyState/page";
+import toast from "react-hot-toast";
 
 export default function PsychologistsPage() {
   const [psychologists, setPsychologists] = useState<Psychologists[]>([]);
   const [lastKey, setLastKey] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
 
   useEffect(() => {
     async function fetchFirstPage() {
@@ -27,6 +29,7 @@ export default function PsychologistsPage() {
         console.error("Error fetching psychologists:", error);
         setPsychologists([]);
         setLastKey(null);
+        setLoadError(true);
       } finally {
         setLoading(false);
       }
@@ -35,16 +38,22 @@ export default function PsychologistsPage() {
   }, []);
 
   const handleLoadMore = async () => {
-    if (!lastKey) return;
+    if (!lastKey || loading) return;
     setLoading(true);
-    const data = await getPsychologists(lastKey);
-    if (data && data.length > 0) {
-      setPsychologists((prev) => [...prev, ...data]);
-      setLastKey(data[data.length - 1].id ?? null);
-    } else {
-      setLastKey(null);
+    try {
+      const data = await getPsychologists(lastKey);
+      if (data.length > 0) {
+        setPsychologists((prev) => [...prev, ...data]);
+        setLastKey(data[data.length - 1].id);
+      } else {
+        setLastKey(null);
+      }
+    } catch (error) {
+      console.error("Error loading more psychologists:", error);
+      toast.error("Could not load more psychologists. Please try again.");
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   const [sort, setSort] = useState<SortOption>("a-z");
@@ -86,7 +95,13 @@ export default function PsychologistsPage() {
           </div>
 
           {!loading && psychologists.length === 0 && (
-            <EmptyState message="No psychologists found" />
+            <EmptyState
+              message={
+                loadError
+                  ? "Could not load psychologists. Please try again later."
+                  : "No psychologists found"
+              }
+            />
           )}
 
           {lastKey && (

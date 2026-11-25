@@ -4,12 +4,17 @@ import PsychologistCard from "../components/PsychologistCard/page";
 import { useFavorites } from "../services/favorite";
 
 export function FavoritesPage() {
-  const { favorites, loading, removeFavorite } = useFavorites();
+  const { favorites, loading, error, removeFavorite, retry } = useFavorites();
 
   return (
     <div className={css.favoritesCard}>
       {loading ? (
         <Loader />
+      ) : error ? (
+        <div className={css.empty}>
+          <p>Could not load favorites. Please try again.</p>
+          <button onClick={retry}>Try again</button>
+        </div>
       ) : favorites.length === 0 ? (
         <p className={css.empty}>You haven’t added any psychologists yet.</p>
       ) : (

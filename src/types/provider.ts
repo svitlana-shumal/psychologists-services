@@ -3,6 +3,7 @@ import { createContext } from "react";
 
 export type AuthContextType = {
   user: User | null;
+  authReady: boolean;
   logout: () => Promise<void>;
 };
 

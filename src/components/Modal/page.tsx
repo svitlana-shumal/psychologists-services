@@ -37,7 +37,11 @@ export default function Modal({ children, onClose }: Props) {
       aria-modal="true"
     >
       <div className={css.modal}>
-        <button className={css.close} onClick={onClose}>
+        <button
+          className={css.close}
+          onClick={onClose}
+          aria-label="Close dialog"
+        >
           <svg width={32} height={32}>
             <use href="/symbol-defs.svg#icon-x" />
           </svg>

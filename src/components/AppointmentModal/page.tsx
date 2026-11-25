@@ -6,14 +6,17 @@ import { useState } from "react";
 import { appointmentSchema } from "../../validation/validation";
 import type { AppointmentFormData } from "../../types/PsychologistsType";
 import toast from "react-hot-toast";
+import { createAppointmentRequest } from "../../services/appointments";
 
 type Props = {
+  psychologistId: string;
   psychologistName: string;
   psychologistAvatar: string;
   onClose: () => void;
 };
 
 export const AppointmentModal = ({
+  psychologistId,
   psychologistName,
   psychologistAvatar,
   onClose,
@@ -21,7 +24,7 @@ export const AppointmentModal = ({
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     setValue,
     clearErrors,
   } = useForm<AppointmentFormData>({
@@ -45,11 +48,11 @@ export const AppointmentModal = ({
 
   const onSubmit = async (data: AppointmentFormData) => {
     try {
-      console.log("Appointment data:", data);
+      await createAppointmentRequest(data, psychologistId, psychologistName);
       toast.success("Application successfully sent ✅");
       onClose();
     } catch (error) {
-      console.error("Appointment error:", error);
+      console.error("Appointment submission failed:", error);
       toast.error("Failed to send application ❌");
     }
   };
@@ -130,7 +133,7 @@ export const AppointmentModal = ({
         {errors.comment && (
           <span className={css.error}>{errors.comment.message}</span>
         )}
-        <Button text="Send" type="submit" />
+        <Button text="Send" type="submit" disabled={isSubmitting} />
       </form>
     </div>
   );

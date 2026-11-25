@@ -1,10 +1,11 @@
 import { Link, NavLink } from "react-router-dom";
 import css from "./Header.module.css";
-import { useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import Modal from "../Modal/page";
-import LoginForm from "../LoginForm/page";
-import AuthForm from "../AuthForm/page";
 import { useAuth } from "../../hooks/useAuth";
+
+const LoginForm = lazy(() => import("../LoginForm/page"));
+const AuthForm = lazy(() => import("../AuthForm/page"));
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -96,13 +97,17 @@ const Header = () => {
         </button>
         {isLoginOpen && (
           <Modal onClose={() => setIsLoginOpen(false)}>
-            <LoginForm onClose={() => setIsLoginOpen(false)} />
+            <Suspense fallback={<p>Loading...</p>}>
+              <LoginForm onClose={() => setIsLoginOpen(false)} />
+            </Suspense>
           </Modal>
         )}
 
         {isRegisterOpen && (
           <Modal onClose={() => setIsRegisterOpen(false)}>
-            <AuthForm onClose={() => setIsRegisterOpen(false)} />
+            <Suspense fallback={<p>Loading...</p>}>
+              <AuthForm onClose={() => setIsRegisterOpen(false)} />
+            </Suspense>
           </Modal>
         )}
       </header>

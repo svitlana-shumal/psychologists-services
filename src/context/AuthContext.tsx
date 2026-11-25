@@ -5,10 +5,15 @@ import { AuthContext } from "../types/provider";
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
+  const [authReady, setAuthReady] = useState(false);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
       setUser(firebaseUser);
+      setAuthReady(true);
+    }, (error) => {
+      console.error("Error restoring authentication state:", error);
+      setAuthReady(true);
     });
     return unsubscribe;
   }, []);
@@ -18,7 +23,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, logout }}>
+    <AuthContext.Provider value={{ user, authReady, logout }}>
       {children}
     </AuthContext.Provider>
   );

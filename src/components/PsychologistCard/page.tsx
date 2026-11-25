@@ -14,7 +14,7 @@ import toast from "react-hot-toast";
 
 type Props = {
   data: Psychologists;
-  onRemove?: (id: string) => void;
+  onRemove?: (id: string) => void | Promise<void>;
 };
 
 export default function PsychologistCard({ data, onRemove }: Props) {
@@ -23,11 +23,38 @@ export default function PsychologistCard({ data, onRemove }: Props) {
 
   const { user } = useAuth();
   const [isFavorite, setIsFavorites] = useState(false);
+  const [favoritePending, setFavoritePending] = useState(false);
+  const [favoriteStatusReady, setFavoriteStatusReady] = useState(false);
 
   useEffect(() => {
-    if (user) {
-      checkFavorite(user.uid, data.id).then(setIsFavorites);
+    let active = true;
+    if (!user) {
+      setIsFavorites(false);
+      setFavoriteStatusReady(true);
+      return () => {
+        active = false;
+      };
     }
+
+    setFavoriteStatusReady(false);
+    checkFavorite(user.uid, data.id)
+      .then((favorite) => {
+        if (active) {
+          setIsFavorites(favorite);
+          setFavoriteStatusReady(true);
+        }
+      })
+      .catch((error: unknown) => {
+        console.error("Error checking favorite:", error);
+        if (active) {
+          setFavoriteStatusReady(true);
+          toast.error("Could not check favorite status.");
+        }
+      });
+
+    return () => {
+      active = false;
+    };
   }, [user, data.id]);
 
   const toggleFavorite = async () => {
@@ -35,13 +62,26 @@ export default function PsychologistCard({ data, onRemove }: Props) {
       toast("This functionality is only available to authorized users.");
       return;
     }
-    if (isFavorite) {
-      await removeFromFavorites(user.uid, data.id);
-      setIsFavorites(false);
-      onRemove?.(data.id);
-    } else {
-      await addToFavorites(user.uid, data.id);
-      setIsFavorites(true);
+
+    if (favoritePending) return;
+    setFavoritePending(true);
+    try {
+      if (isFavorite) {
+        if (onRemove) {
+          await onRemove(data.id);
+        } else {
+          await removeFromFavorites(user.uid, data.id);
+        }
+        setIsFavorites(false);
+      } else {
+        await addToFavorites(user.uid, data.id);
+        setIsFavorites(true);
+      }
+    } catch (error) {
+      console.error("Error updating favorite:", error);
+      toast.error("Could not update favorites. Please try again.");
+    } finally {
+      setFavoritePending(false);
     }
   };
 
@@ -81,7 +121,10 @@ export default function PsychologistCard({ data, onRemove }: Props) {
 
             <button
               className={`${css.heartButton} ${isFavorite ? css.active : ""}`}
-              aria-label="Add to favorites"
+              aria-label={
+                isFavorite ? "Remove from favorites" : "Add to favorites"
+              }
+              disabled={favoritePending || !favoriteStatusReady}
               onClick={toggleFavorite}
             >
               <svg width="26" height="26" className={css.icon}>
@@ -119,9 +162,9 @@ export default function PsychologistCard({ data, onRemove }: Props) {
             Read more
           </button>
         )}
-        {showReviews && data.reviews?.length > 0 && (
+        {showReviews && (
           <ReviewsBlock
-            reviews={data.reviews}
+            reviews={data.reviews ?? []}
             onAppointmentClick={handleAppoinmentClick}
           />
         )}
@@ -129,6 +172,7 @@ export default function PsychologistCard({ data, onRemove }: Props) {
         {showModal && (
           <Modal onClose={() => setShowModal(false)}>
             <AppointmentModal
+              psychologistId={data.id}
               psychologistName={data.name}
               psychologistAvatar={data.avatar_url}
               onClose={() => setShowModal(false)}
